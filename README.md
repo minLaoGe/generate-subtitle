@@ -14,6 +14,7 @@ youtube原视频链接如下：  https://www.youtube.com/watch?v=3eytpBOkOFA
 
 需要提取字幕的目标语言，比如原字幕是日文，想要他翻译成中文那么就配置为
 > object_subtitle = '中文' 
+> 
 > language = 'Japanese'
 
 OpenAI官网的Open_key(一定要配置的):
