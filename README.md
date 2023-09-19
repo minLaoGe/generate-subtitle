@@ -1,38 +1,35 @@
-# 万国语言字幕提取
+# Multilingual Subtitle Extraction
+<a href='/README_ZH.md'>中文文档 </a>
+## Objective
+Use AI tools to extract srt format subtitles from video files, freeing up hands and avoiding repetitive labor.
 
-## 目的
-使用AI工具从视频文件中提取srt格式字幕，解放双手，避免重复劳动。
+## Project Demonstration
 
-## 项目示范
+The original YouTube video link is as follows: https://www.youtube.com/watch?v=3eytpBOkOFA
 
-youtube原视频链接如下：  https://www.youtube.com/watch?v=3eytpBOkOFA
+The link to the video after collection is: https://www.bilibili.com/video/BV1cj411C7dx/
 
-采集之后的视频链接为： https://www.bilibili.com/video/BV1cj411C7dx/
+## Parameter Description
+In `main.py` there are parameters available for adjustment:
 
-## 参数说明
-在`main.py`中有一下参数供调整： 
-
-需要提取字幕的目标语言，比如原字幕是日文，想要他翻译成中文那么就配置为
-> object_subtitle = '中文' 
-> 
+Target language for subtitle extraction. For example, if the original subtitle is in Japanese and you want it translated to Chinese, then set it as
+> object_subtitle = 'Chinese'
+>
 > language = 'Japanese'
 
-OpenAI官网的Open_key(一定要配置的):
+OpenAI official website's Open_key (essential to configure):
 > openai_key = 'sk-xxxxxxxxxxxx'
 
+## Technical Architecture
+Use Open-whisper for language recognition, save it as the original subtitle file, and then use ChatGPT for translation.
 
+## Whisper Model and Language Selection
 
-## 技术架构
-使用Open-whisper进行语言识别，保存为原字幕文件之后，再使用ChatGPT进行翻译。
+### Model Selection
 
+[Click here to view the OpenAI official description](https://github.com/openai/whisper/blob/main/README.md?plain=1)
 
-## whisper模型和语言选择
-
-### 模型选择
-
-[点我查看OpenAI官网说明](https://github.com/openai/whisper/blob/main/README.md?plain=1)
-
-There are five model sizes, four with English-only versions, offering speed and accuracy tradeoffs. Below are the names of the available models and their approximate memory requirements and relative speed. 
+There are five model sizes, four with English-only versions, offering speed and accuracy tradeoffs. Below are the names of the available models and their approximate memory requirements and relative speed.
 
 |  Size  | Parameters | English-only model | Multilingual model | Required VRAM | Relative speed |
 |:------:|:----------:|:------------------:|:------------------:|:-------------:|:--------------:|
@@ -42,9 +39,8 @@ There are five model sizes, four with English-only versions, offering speed and 
 | medium |   769 M    |    `medium.en`     |      `medium`      |     ~5 GB     |      ~2x       |
 | large  |   1550 M   |        N/A         |      `large`       |    ~10 GB     |       1x       |
 
+### Supported Languages
 
-### 支持的语言
-
-分数越高，代表识别的精度越低
+A higher score indicates lower recognition accuracy.
 
 ![WER breakdown by language](https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg)
